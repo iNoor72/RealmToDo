@@ -8,7 +8,8 @@
 import Foundation
 
 protocol Database {
-    func create()
+    func createCategory(with name: String)
+    func createItem(with name: String)
     func save()
     func update()
     func deleteItem(item: Item)
