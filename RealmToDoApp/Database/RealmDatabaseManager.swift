@@ -26,10 +26,10 @@ class RealmDatabaseManager: Database {
     
     func createItem(with name: String) {
         let item = Item()
-        category.name = name
+        item.name = name
         
         try? realm.write {
-            realm.add(category)
+            realm.add(item)
         }
     }
     
