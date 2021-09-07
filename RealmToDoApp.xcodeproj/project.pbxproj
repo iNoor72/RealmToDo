@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CC3169726E724F8008A7CC6 /* ItemsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC3169626E724F8008A7CC6 /* ItemsViewController+Extensions.swift */; };
 		7CD2014C26D2B60B00CFAD3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD2014B26D2B60B00CFAD3F /* AppDelegate.swift */; };
 		7CD2014E26D2B60B00CFAD3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD2014D26D2B60B00CFAD3F /* SceneDelegate.swift */; };
 		7CD2015026D2B60B00CFAD3F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD2014F26D2B60B00CFAD3F /* MainViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		136C07A5AE33A85812BDC844 /* Pods-RealmToDoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmToDoApp.debug.xcconfig"; path = "Target Support Files/Pods-RealmToDoApp/Pods-RealmToDoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		52AB6EFAAD4042223584425B /* Pods-RealmToDoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmToDoApp.release.xcconfig"; path = "Target Support Files/Pods-RealmToDoApp/Pods-RealmToDoApp.release.xcconfig"; sourceTree = "<group>"; };
+		7CC3169626E724F8008A7CC6 /* ItemsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		7CD2014826D2B60B00CFAD3F /* RealmToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD2014B26D2B60B00CFAD3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CD2014D26D2B60B00CFAD3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				7CD2016726D2B90600CFAD3F /* MainViewController+Extensions.swift */,
+				7CC3169626E724F8008A7CC6 /* ItemsViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				7CD2017026D2BAF100CFAD3F /* ItemsViewController.swift in Sources */,
 				7CD2017526D2BB3500CFAD3F /* Constants.swift in Sources */,
 				7CD2014E26D2B60B00CFAD3F /* SceneDelegate.swift in Sources */,
+				7CC3169726E724F8008A7CC6 /* ItemsViewController+Extensions.swift in Sources */,
 				7CD2016C26D2B97B00CFAD3F /* Database.swift in Sources */,
 				7CD2016E26D2B9B400CFAD3F /* RealmDatabaseManager.swift in Sources */,
 				7CD2016226D2B68900CFAD3F /* Category.swift in Sources */,

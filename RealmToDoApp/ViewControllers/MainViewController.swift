@@ -12,36 +12,46 @@ class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let DBManager = RealmDatabaseManager.shared
+    var categoriesArray = [Category]()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        super.viewDidLoad()
+        fetchCategories()
     }
 
     @IBAction func addCategory(_ sender: UIBarButtonItem) {
-        //Add some code to add a new Category
-        var categoryName = ""
-        let alert = UIAlertController(title: "Add new category", message: "Please enter the category name", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
+        let alert = UIAlertController(title: "Add new category", message: "Please enter the category name", preferredStyle: .alert) 
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {[weak self] _ in
             guard let textfield = alert.textFields?.first else { return }
-            categoryName = textfield.text!
-            print(categoryName)
+            
+            let categoryName = textfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !(categoryName.isEmpty) {
+                self?.DBManager.createCategory(with: categoryName)
+                self?.fetchCategories()
+            }
+            else {
+                let alert = UIAlertController(title: "Invalid naming", message: "We couldn't create a category because the name is incorrect, try again with a valid name.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                alert.addAction(action)
+                self?.present(alert, animated: true)
+            }
         }))
         alert.addTextField(configurationHandler: nil)
         present(alert, animated: true)
         
-        if !(categoryName.isEmpty) {
-            let safeCategoryName = categoryName.trimmingCharacters(in: .whitespacesAndNewlines)
-            if !(safeCategoryName.isEmpty) {
-                DBManager.createCategory(with: safeCategoryName)
-            }
-            tableView.reloadData()
-        }else {
-            let alert = UIAlertController(title: "Invalid naming", message: "We couldn't create a category because the name is incorrect, try again with a valid name.", preferredStyle: .alert)
-            present(alert, animated: true)
+    }
+    
+    func reloadTableView(){
+        DispatchQueue.main.async {[weak self] in
+            self?.tableView.reloadData()
         }
-        
+    }
+    
+    func fetchCategories() {
+        categoriesArray = DBManager.getCategories()
+        reloadTableView()
     }
     
 }

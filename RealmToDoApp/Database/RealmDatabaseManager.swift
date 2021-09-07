@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class RealmDatabaseManager: Database {
-    
     static let shared = RealmDatabaseManager()
     private let realm = try! Realm()
     
@@ -31,6 +30,18 @@ class RealmDatabaseManager: Database {
         try? realm.write {
             realm.add(item)
         }
+    }
+    
+    func getCategories() -> [Category] {
+        let result = realm.objects(Category.self)
+        let categories:[Category] = result.map {$0}
+        return categories
+    }
+    
+    func getItems() ->[Item]{
+        let result = realm.objects(Item.self)
+        let items:[Item] = result.map {$0}
+        return items
     }
     
     func save() {

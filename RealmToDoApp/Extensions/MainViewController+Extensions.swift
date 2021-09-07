@@ -9,17 +9,21 @@ import UIKit
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return categoriesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellID, for: indexPath)
-        cell.textLabel?.text = "Hello Noor"
+        cell.textLabel?.text = categoriesArray[indexPath.row].name
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Navigate to the items of the category
+        let destination = storyboard?.instantiateViewController(identifier: Constants.itemsViewID) as! ItemsViewController
+        destination.category = categoriesArray[indexPath.row]
+        navigationController?.pushViewController(destination, animated: true)
     }
     
 }

@@ -8,10 +8,12 @@
 import UIKit
 
 class ItemsViewController: UIViewController {
+    
+    var category : Category?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = category?.name ?? "Items"
     }
 
 }
