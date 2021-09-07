@@ -14,6 +14,12 @@ class ItemsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = category?.name ?? "Items"
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addItems))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func addItems() {
+        
     }
 
 }
