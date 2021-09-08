@@ -14,7 +14,7 @@ protocol Database {
     func save()
     func update()
     func getCategories() -> [Category]
-    func getItems() -> [Item]
+    func getItems()-> [Item]
     func deleteItem(item: Item)
     func deleteCategory(category: Category)
 }

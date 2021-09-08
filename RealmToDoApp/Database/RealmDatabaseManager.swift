@@ -38,7 +38,7 @@ class RealmDatabaseManager: Database {
         return categories
     }
     
-    func getItems() ->[Item]{
+    func getItems() -> [Item]{
         let result = realm.objects(Item.self)
         let items:[Item] = result.map {$0}
         return items
