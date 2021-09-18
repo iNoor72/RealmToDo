@@ -12,7 +12,9 @@ class RealmDatabaseManager: Database {
     static let shared = RealmDatabaseManager()
     private let realm = try! Realm()
     
-    private init() {}
+    private init() {
+        print(realm.configuration.fileURL)
+    }
     
     func createCategory(with name: String) {
         let category = Category()
@@ -21,14 +23,15 @@ class RealmDatabaseManager: Database {
         try? realm.write {
             realm.add(category)
         }
+        
     }
     
-    func createItem(with name: String) {
+    func updateCategory(name: String, category:Category) {
         let item = Item()
         item.name = name
         
-        try? realm.write {
-            realm.add(item)
+        try? realm.write{
+            category.items.append(item)
         }
     }
     
@@ -38,27 +41,20 @@ class RealmDatabaseManager: Database {
         return categories
     }
     
-    func getItems() -> [Item]{
-        let result = realm.objects(Item.self)
-        let items:[Item] = result.map {$0}
+    func getItems(for category: Category) -> [Item]{
+        let items: [Item] = category.items.map {$0}
         return items
     }
     
-    func save() {
-
-    }
-    
-    func update() {
-        
-    }
-    
-    func deleteItem(item: Item) {
-        realm.delete(item)
+    func deleteItem(at place: Int, for category: Category) {
+        try? realm.write {
+            category.items.remove(at: place)
+        }
     }
     
     func deleteCategory(category: Category) {
-        realm.delete(category)
+        try? realm.write{
+            realm.delete(category)
+        }
     }
-    
-    
 }

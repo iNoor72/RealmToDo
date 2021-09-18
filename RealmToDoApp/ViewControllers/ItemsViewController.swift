@@ -21,18 +21,20 @@ class ItemsViewController: UIViewController {
         self.title = category?.name ?? "Items"
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addItems))
         navigationItem.rightBarButtonItem = addButton
-        fetchItems()
+        reloadTableView()
     }
     
     @objc func addItems() {
         let alert = UIAlertController(title: "Add new Item", message: "Please enter the item", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {[weak self] _ in
             guard let textfield = alert.textFields?.first else { return }
+            guard let category = self?.category else { return }
             
             let itemName = textfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             if !(itemName.isEmpty) {
-                self?.DBManager.createItem(with: itemName)
-                self?.fetchItems()
+                
+                self?.DBManager.updateCategory(name: itemName, category: category)
+                self?.reloadTableView()
             }
             else {
                 let alert = UIAlertController(title: "Invalid naming", message: "We couldn't create an item because the name is incorrect, try again with a valid name.", preferredStyle: .alert)
@@ -50,17 +52,4 @@ class ItemsViewController: UIViewController {
             self?.tableView.reloadData()
         }
     }
-    
-    func fetchItems() {
-        guard let category = category else {return}
-        let items = DBManager.getItems()
-        var itemsList = List<Item>()
-//        itemsList = items.map { $0 }
-        for item in items {
-            itemsList.append(item)
-        }
-        category.items = itemsList
-        reloadTableView()
-    }
-
 }

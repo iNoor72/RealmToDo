@@ -26,4 +26,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(destination, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let category = categoriesArray[indexPath.row]
+            DBManager.deleteCategory(category: category)
+            fetchCategories()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
 }

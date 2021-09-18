@@ -10,6 +10,9 @@ import RealmSwift
 
 class Category : Object {
     @objc dynamic var name = ""
-    var items = List<Item>()
+    let items = List<Item>()
     
+    override class func primaryKey() -> String? {
+        return "name"
     }
+}

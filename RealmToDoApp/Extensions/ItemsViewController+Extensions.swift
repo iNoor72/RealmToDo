@@ -19,5 +19,15 @@ extension ItemsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if (category != nil) {
+                DBManager.deleteItem(at: indexPath.row, for: category!)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+        }
+    }
+    
 }
 

@@ -10,11 +10,7 @@ import RealmSwift
 
 protocol Database {
     func createCategory(with name: String)
-    func createItem(with name: String)
-    func save()
-    func update()
     func getCategories() -> [Category]
-    func getItems()-> [Item]
-    func deleteItem(item: Item)
+    func deleteItem(at place: Int, for category: Category)
     func deleteCategory(category: Category)
 }
